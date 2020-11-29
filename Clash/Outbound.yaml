@@ -44,7 +44,7 @@ external-controller: 127.0.0.1:9090
 # A relative path to the configuration directory or an absolute path to a
 # directory in which you put some static web resource. Clash core will then
 # serve it at `${API}/ui`.
-# external-ui: folder
+external-ui: folder
 
 # Secret for the RESTful API (optional)
 # Authenticate by spedifying HTTP header `Authorization: Bearer ${secret}`
@@ -102,16 +102,18 @@ dns:
   # involved. Clash answers the DNS question with the first result gathered.
   nameserver:
     - 119.29.29.29
-    # - tls://dns.rubyfish.cn:853 # DNS over TLS
-    # - https://1.1.1.1/dns-query # DNS over HTTPS
-
+    - tls://dns.rubyfish.cn:853 # DNS over TLS
+    - https://1.1.1.1/dns-query # DNS over HTTPS
+  # - 114.114.114.114 # default value
+  # - 8.8.8.8 # default value
   # When `fallback` is present, the DNS server will send concurrent requests
   # to the servers in this section along with servers in `nameservers`.
   # The answers from fallback servers are used when the GEOIP country
   # is not `CN`.
   fallback:
     - https://cloudflare-dns.com/dns-query
-
+  # - tcp://1.1.1.1
+  
   # If IP addresses resolved with servers in `nameservers` are in the specified
   # subnets below, they are considered invalid and results from `fallback`
   # servers are used instead.
